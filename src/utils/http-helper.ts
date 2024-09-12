@@ -12,3 +12,19 @@ export const noContent = async(): Promise<HttpResponse> => {
         body: null,
     }
 }
+
+export const created = async(): Promise<HttpResponse> => {
+    return {
+        statusCode: 201,
+        body: {
+            message: "Player created successfully"
+        }
+    }
+}
+
+export const badRequest = async(): Promise<HttpResponse> => {
+    return {
+        statusCode: 400,
+        body: null,
+    }
+}
