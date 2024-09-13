@@ -1,5 +1,6 @@
 import { playerModel } from "../models/player-model";
-import { deletePlayer, findAllPlayers, findPlayerById, insertPlayer } from "../repositores/players-repository";
+import { statisticsModel } from "../models/statistics-model";
+import { deletePlayer, findAllPlayers, findPlayerById, insertPlayer, putPlayer } from "../repositores/players-repository";
 import { OK, badRequest, created, noContent } from "../utils/http-helper"
 
 export const getPlayerService = async ( ) => {
@@ -52,4 +53,20 @@ export const deletePlayerService = async(id: number) => {
     response = await OK({message: "Deleted"});
 
     return response;
+}
+
+
+export const updatePlayerService = async(id: number, statistics: statisticsModel) => {
+   let response = null;
+
+   await putPlayer(id, statistics);
+
+   if(Object.keys(statistics).length === 0){
+        response = await OK({message: "Updated"});
+   }else{
+        response = await badRequest();
+   }
+
+    return response;
+
 }
