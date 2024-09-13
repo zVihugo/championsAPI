@@ -84,5 +84,9 @@ export const insertPlayer = async (player: playerModel) => {
 
 export const deletePlayer = async (id: number) => {
     const index = database.findIndex(player => player.id === id);
-    database.splice(index, 1);
+
+    if(index !== -1){
+        database.splice(index, 1);
+    }
+    
 }
