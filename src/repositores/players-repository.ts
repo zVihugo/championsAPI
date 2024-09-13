@@ -77,3 +77,12 @@ export const findAllPlayers = async (): Promise<playerModel[]> => {
 export const findPlayerById = async (id: number): Promise<playerModel | undefined> => {
     return database.find(player => player.id === id);
 }
+
+export const insertPlayer = async (player: playerModel) => {
+    database.push(player);
+}
+
+export const deletePlayer = async (id: number) => {
+    const index = database.findIndex(player => player.id === id);
+    database.splice(index, 1);
+}
